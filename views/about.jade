@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  .container
+    #headtitle
+      h1= title
+    #menu
+      ul(class='nav nav-pills nav-stacked')
+        li
+          a(href='/') Home
+        li
+          a(href='/download') Download
+        li
+          a(href='/register') Register
+        li
+          a(href='/donate') Donate
+        li(class='active')
+          a(href='/about') About
+
+    #main
+      p Grymark is a game by <strong>"grym"</strong>, an international free association of software engineers, devoted to creating a perfect user experience and innovative game design.
+      p Grymark is the first publicly released multiplayer online game of <strong>"grym"</strong>. It uses advanced network programming techniques for user to user interaction, lag compensation, and scripting.

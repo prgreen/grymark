@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  .container
+    #headtitle
+      h1= title
+    #menu
+      ul(class='nav nav-pills nav-stacked')
+        li
+          a(href='/') Home
+        li
+          a(href='/download') Download
+        li(class='active')
+          a(href='/register') Register
+        li 
+          a(href='/donate') Donate
+        li
+          a(href='/about') About
+
+    #main
+      p You will need a registered account to play Grymark in multiplayer mode or save your hi-scores in single player mode.
+      form(id='form-signin', class='form-signin', action='/register', method='post')
+        h4(class='form-signin-heading') Enter your name:
+        input(type='text', class='input-block-level', placeholder='Your name here!', name='username')
+        h4(class='form-signin-heading') Enter a password:
+        input(type='password', class='input-block-level', placeholder='Your password here!', name='password')
+        h4(class='form-signin-heading') Repeat the password:
+        input(type='password', class='input-block-level', placeholder='Repeat your password here!', name='passwordrepeat')
+        button(class='btn btn-large btn-primary', type='submit') Sign up
+        #flashMessage
+          p= flash

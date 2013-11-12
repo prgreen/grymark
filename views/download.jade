@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  .container
+    #headtitle
+      h1= title
+    #menu
+      ul(class='nav nav-pills nav-stacked')
+        li
+          a(href='/') Home
+        li(class='active')
+          a(href='/download') Download
+        li 
+          a(href='/register') Register
+        li 
+          a(href='/donate') Donate
+        li
+          a(href='/about') About
+
+    #main
+      p Grymark <strong>full version</strong> download link will <em>soon</em> be made publicly available!
+      p If you want to help <em>now</em> with gameplay testing, here is an alpha version (demo) with two levels, simple "retro-style" graphics and limited features (single player only, no menus). You may already try to <strong>beat the world records!</strong>
+      a(href='http://88.191.131.158/static/grymark_alpha2.zip') <strong>Download Grymark (Demo, Windows only)</strong>
+      p No installation required, just extract and run.
+      p Send all <em>feedback, bug reports, ideas for new features and your own levels</em> to:
+      p <strong>grym.official  __AT__  gmail.com</strong>

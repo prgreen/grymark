@@ -1,0 +1,36 @@
+exports.index = (req, res) ->
+  res.render('index', { title: 'Grymark' })
+
+exports.download = (req, res) ->
+  res.render('download', { title: 'Grymark Download'})
+
+exports.register = (req, res) ->
+  res.render('register', { title: 'Grymark Registration', flash: ''})
+
+exports.register_post = (db)->
+  (req, res) ->
+    #TODO more validation (size, forbidden characters)
+    if req.body.password != req.body.passwordrepeat
+      res.render('register', {title: 'Grymark Registration', flash: 'Passwords didn\'t match, try again!'})
+    else if (req.body.password.length < 3) or (req.body.passwordrepeat.length < 3) or (req.body.username.length < 4)
+      res.render('register', {title: 'Grymark Registration', flash: 'Username or password too short!'})
+    else if not /[^a-zA-Z0-9]/.test(req.body.username)
+      res.render('register', {title: 'Grymark Registration', flash: 'Username can only contain a-z A-Z 0-9, no special characters.'})
+    else
+      db.exists("grymark:#{req.body.username}", (err, ex)->
+        if ex or err
+          res.render('register', {title: 'Grymark Registration', flash: 'This username is already taken! Try another one.'})
+        else
+          db.set("grymark:#{req.body.username}", "#{req.body.password}", (err, res)->)
+          console.log "#{req.body.username} #{req.body.password}"
+          res.render('register', {title: 'Grymark Registration', flash: 'You were successfully registered! You may start using your account in Grymark!'})
+      )
+exports.donate = (req, res) ->
+  res.render('donate', { title: 'Grymark Donations'})
+
+exports.about = (req, res) ->
+  res.render('about', { title: 'Grymark About'})
+
+exports.google = (req, res) ->
+  fs.readFile(__dirname + '/public/googlebcb358032381cfe6.html', 'utf8', (err, text)->
+    res.send(text)
